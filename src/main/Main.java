@@ -16,14 +16,14 @@ public class Main {
 
         Buffer buffer = new Buffer(20);
         Thread producer1 = new Thread(new ProducerThread(buffer, 1));
-//        Thread producer2 = new Thread(new ProducerThread(buffer, 2));
-//        Thread producer3 = new Thread(new ProducerThread(buffer, 3));
+        Thread producer2 = new Thread(new ProducerThread(buffer, 2));
+        Thread producer3 = new Thread(new ProducerThread(buffer, 3));
 //        Thread producer4 = new Thread(new ProducerThread(buffer, 4));
 //        Thread producer5 = new Thread(new ProducerThread(buffer, 5));
 
         Thread consumer1 = new Thread(new ConsumerThread(buffer, 1));
-//        Thread consumer2 = new Thread(new ConsumerThread(buffer, 2));
-//        Thread consumer3 = new Thread(new ConsumerThread(buffer, 3));
+        Thread consumer2 = new Thread(new ConsumerThread(buffer, 2));
+        Thread consumer3 = new Thread(new ConsumerThread(buffer, 3));
 //        Thread consumer4 = new Thread(new ConsumerThread(buffer, 4));
 //        Thread consumer5 = new Thread(new ConsumerThread(buffer, 5));
 //        Thread consumer6 = new Thread(new ConsumerThread(buffer, 6));
@@ -33,8 +33,8 @@ public class Main {
 //        Thread consumer10 = new Thread(new ConsumerThread(buffer, 10));
 
         consumer1.start();
-//        consumer2.start();
-//        consumer3.start();
+        consumer2.start();
+        consumer3.start();
 //        consumer4.start();
 //        consumer5.start();
 //        consumer6.start();
@@ -43,15 +43,15 @@ public class Main {
 //        consumer9.start();
 //        consumer10.start();
         producer1.start();
-//        producer2.start();
-//        producer3.start();
+        producer2.start();
+        producer3.start();
 //        producer4.start();
 //        producer5.start();
 
         try {
             consumer1.join();
-//            consumer2.join();
-//            consumer3.join();
+            consumer2.join();
+            consumer3.join();
 //            consumer4.join();
 //            consumer5.join();
 //            consumer6.join();
@@ -60,8 +60,8 @@ public class Main {
 //            consumer9.join();
 //            consumer10.join();
             producer1.join();
-//            producer2.join();
-//            producer3.join();
+            producer2.join();
+            producer3.join();
 //            producer4.join();
 //            producer5.join();
         } catch (InterruptedException e) {

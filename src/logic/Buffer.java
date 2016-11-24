@@ -12,6 +12,8 @@ public class Buffer {
     private int size;
     private List<Integer> bufferList = new LinkedList<Integer>();
 
+    private ConsumerSemaphore consumerSem = new ConsumerSemaphore(size);
+    private ProducerSemaphore producerSem = new ProducerSemaphore(size);
 
     public Buffer(int size) {
         this.size=size;
@@ -21,9 +23,12 @@ public class Buffer {
         while (bufferList.size() >= size){
             wait();
         }
+
+           // producerSem.acquire();
             bufferList.add(element);
             System.out.println("Producer gave number.");
             System.out.println("Now buffer contains:" + bufferList);
+           // consumerSem.release();
             notifyAll();
 
     }
@@ -33,10 +38,12 @@ public class Buffer {
             wait();
         }
 
+       // consumerSem.acquire();
         Integer firstElement = bufferList.get(0);
         bufferList.remove(firstElement);
         System.out.println("Consumer took number.");
         System.out.println("Now buffer contains:"+bufferList);
+       // producerSem.release();
         notifyAll();
         return firstElement;
 

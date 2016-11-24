@@ -18,8 +18,8 @@ public class ConsumerThread implements Runnable {
         Integer iterator = 1000;
         while (iterator > 0) {
             try {
-       //         System.out.println("Consumer Thread "+numberOfThread + " is running.");
                 buffer.getFirstElement();
+                System.out.println("It was Consumer Thread "+numberOfThread + "\n" );
 
             } catch (InterruptedException e) {
                 e.printStackTrace();
