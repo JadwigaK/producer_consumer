@@ -19,9 +19,9 @@ public class ProducerThread implements Runnable {
         Integer iterator = 1000;
         while(iterator > 0){
             try {
-
                 buffer.putElement(iterator);
                 System.out.println("It was Producer Thread "+numberOfThread+ "\n");
+                //Thread.sleep(500);
 
             } catch (InterruptedException e) {
                 e.printStackTrace();

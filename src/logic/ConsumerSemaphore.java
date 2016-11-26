@@ -6,19 +6,25 @@ package logic;
 public class ConsumerSemaphore {
 
     private int size;
-    private int counter = 0; // ile zajetego miejsca w buforze
+    private int counter; // ile zajetego miejsca w buforze
 
     public ConsumerSemaphore(int size) {
+        this.counter=0;
         this.size = size;
     }
 
-    public void release(){
-        if (counter == 0) {
-            counter++;
-        }
+    public synchronized void release(){
+        counter++;
+        notifyAll();
     }
 
-    public void acquire() throws InterruptedException {
+    public synchronized void acquire() throws InterruptedException {
+        while (counter == 0){
+            wait();
+        }
+
+        //tu jest cos zle bo to acquire tworzy tak jakby jedena tylko cyfre, tylko gdzie ja to własciwie tworze te cyfry,
+        //bo nie w semforze, Kuba ratuj, mózg paruje;p
         if (counter >0) {
             counter--;
         }

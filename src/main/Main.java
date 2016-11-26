@@ -13,6 +13,7 @@ import java.util.List;
  */
 public class Main {
     public static void main(String[] arg){
+        long startTime = System.nanoTime();
 
         Buffer buffer = new Buffer(20);
         Thread producer1 = new Thread(new ProducerThread(buffer, 1));
@@ -31,7 +32,9 @@ public class Main {
 //        Thread consumer8 = new Thread(new ConsumerThread(buffer, 8));
 //        Thread consumer9 = new Thread(new ConsumerThread(buffer, 9));
 //        Thread consumer10 = new Thread(new ConsumerThread(buffer, 10));
-
+        producer1.start();
+        producer2.start();
+        producer3.start();
         consumer1.start();
         consumer2.start();
         consumer3.start();
@@ -42,9 +45,7 @@ public class Main {
 //        consumer8.start();
 //        consumer9.start();
 //        consumer10.start();
-        producer1.start();
-        producer2.start();
-        producer3.start();
+
 //        producer4.start();
 //        producer5.start();
 
@@ -67,6 +68,10 @@ public class Main {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+        long endTime = System.nanoTime();
+        long duration = (endTime - startTime);
+        System.out.println("duration "+duration);
 
     }
 }

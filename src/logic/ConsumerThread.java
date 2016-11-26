@@ -20,6 +20,7 @@ public class ConsumerThread implements Runnable {
             try {
                 buffer.getFirstElement();
                 System.out.println("It was Consumer Thread "+numberOfThread + "\n" );
+                Thread.sleep(100);
 
             } catch (InterruptedException e) {
                 e.printStackTrace();

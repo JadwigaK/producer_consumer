@@ -5,21 +5,23 @@ package logic;
  */
 public class ProducerSemaphore {
 
-    private int size ;
-    private int counter = size; //ile jeszcze wolnego miejsca
+    private int size;
+    private int counter; //ile jeszcze wolnego miejsca
 
     public ProducerSemaphore(int size) {
         this.size = size;
+        this.counter=size;
     }
 
-    public void release(){
-        if (counter ==0) {
+    public synchronized void release(){
             counter++;
-        }
-
+            notifyAll();
     }
 
-    public void acquire() throws InterruptedException {
+    public synchronized void acquire() throws InterruptedException {
+        while (counter == 0){
+            wait();
+        }
         if (counter > 0) {
             counter--;
         }
